@@ -1,73 +1,88 @@
-# React + TypeScript + Vite
+  # Geo Attendance
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  Geo Attendance is a role-based attendance tracking application built with React, TypeScript, Vite, and Firebase. It lets admins
+  manage users, geofence settings, and attendance records, while employees can sign in, view their status, and mark attendance based
+  on location.
 
-Currently, two official plugins are available:
+  ## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  - Email/password authentication with Firebase Auth
+  - Role-based access for admin and employee users
+  - Geofence-based attendance tracking
+  - Admin dashboard for managing users and attendance
+  - Employee dashboard with live location and attendance status
+  - Firestore-backed user and attendance data
+  - Responsive UI built with React and Tailwind CSS
+  - Leaflet map integration for location and geofence views
 
-## React Compiler
+  ## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+  - React 19
+  - TypeScript
+  - Vite
+  - Firebase Auth
+  - Cloud Firestore
+  - React Router
+  - Leaflet / React Leaflet
+  - Tailwind CSS
 
-## Expanding the ESLint configuration
+  ## Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+  text
+  src/
+    components/    shared UI components and layout
+    pages/         login, signup, admin, and employee pages
+    styles/        global and page-specific styles
+    firebase.ts    Firebase initialization
+    main.tsx       app entry point
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+  ## Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+  - Node.js 18 or later
+  - npm
+  - A Firebase project with:
+      - Authentication enabled
+      - Firestore enabled
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+  ## Setup
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+  1. Clone the repository:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+  git clone https://github.com/YOUR_USERNAME/geo-attendance.git
+  cd geo-attendance
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+  2. Install dependencies:
+
+  npm install
+
+  3. Make sure Firebase configuration in src/firebase.ts matches your Firebase project.
+  4. Start the development server:
+
+  npm run dev
+
+  5. Build for production:
+
+  npm run build
+
+  6. Preview the production build locally:
+
+  npm run preview
+
+  ## Firebase Configuration
+
+  This project uses Firebase Auth and Firestore. The current Firebase configuration is defined in src/firebase.ts.
+
+  Make sure the following are correctly set in your Firebase Console:
+
+  - Authentication sign-in method
+  - Firestore database
+  - Firestore security rules
+  - Authorized domains
+
+
+  ## Available Scripts
+
+  - npm run dev - start the Vite dev server
+  - npm run build - type-check and build the app
+  - npm run lint - run ESLint
+  - npm run preview - preview the production build
