@@ -1,0 +1,42 @@
+mutation CreateGeofence($name: String!, $latitude: Float!, $longitude: Float!, $radius: Float!, $description: String) @auth(level: USER) {
+  geofence_insert(data: {
+    name: $name,
+    latitude: $latitude,
+    longitude: $longitude,
+    radius: $radius,
+    description: $description,
+    createdAt_expr: "request.time"
+  })
+}
+
+query ListGeofences @auth(level: USER) {
+  geofences {
+    id
+    name
+    latitude
+    longitude
+    radius
+    description
+  }
+}
+
+mutation AssignGeofenceToUser($userId: UUID!, $geofenceId: UUID!) @auth(level: USER) {
+  employeeGeofence_insert(data: {
+    userId: $userId,
+    geofenceId: $geofenceId,
+    assignedAt_expr: "request.time"
+  })
+}
+
+query GetUserAttendanceRecords($userId: UUID!) @auth(level: USER) {
+  attendanceRecords(where: {userId: {eq: $userId}}) {
+    id
+    checkInTime
+    checkOutTime
+    checkInLatitude
+    checkInLongitude
+    checkOutLatitude
+    checkOutLongitude
+    status
+  }
+}

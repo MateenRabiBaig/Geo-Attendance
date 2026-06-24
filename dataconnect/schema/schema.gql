@@ -1,0 +1,37 @@
+type User @table {
+  username: String!
+  email: String!
+  role: String!
+  createdAt: Timestamp!
+  firstName: String
+  lastName: String
+  lastLogin: Timestamp
+}
+
+type Geofence @table {
+  name: String!
+  latitude: Float!
+  longitude: Float!
+  radius: Float!
+  createdAt: Timestamp!
+  description: String
+}
+
+type AttendanceRecord @table {
+  user: User!
+  geofence: Geofence!
+  checkInTime: Timestamp!
+  checkInLatitude: Float!
+  checkInLongitude: Float!
+  status: String!
+  createdAt: Timestamp!
+  checkOutTime: Timestamp
+  checkOutLatitude: Float
+  checkOutLongitude: Float
+}
+
+type EmployeeGeofence @table(key: ["user", "geofence"]) {
+  user: User!
+  geofence: Geofence!
+  assignedAt: Timestamp!
+}
